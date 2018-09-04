@@ -58,8 +58,6 @@ module.exports = function(cMap, redraw, override) {
         //wide stddev breaks (7)
         standard7 = [median + (stddev * 2.5), median + (stddev * 1.5), median + (stddev * 0.5), median - (stddev * 0.5), median - (stddev * 1.5), median - (stddev * 2.5), cMap.minval];
 
-        //console.log(standard8);
-        //console.log(standard7);
 
 
 
@@ -148,7 +146,6 @@ module.exports = function(cMap, redraw, override) {
         }
     }
 
-    //localStorage.setItem("mhi_county_jenks_7", JSON.stringify([79183,64205,54206,46817,40204,33445,1]));
     if (cMap.params.s === '40') {
         geo = 'state';
     }
