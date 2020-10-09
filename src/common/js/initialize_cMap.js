@@ -5,16 +5,16 @@ module.exports = function() {
     L.mapbox.accessToken = 'pk.eyJ1Ijoic3RhdGVjb2RlbW9nIiwiYSI6Ikp0Sk1tSmsifQ.hl44-VjKTJNEP5pgDFcFPg';
 
     var cMap = {};
+    var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ';
+    var mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
 
     //the cMap params gets the initial startup parameters from the address bar
     cMap.params = require("./parse_query_string.js")();
 
 
-    cMap.mbstyle = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {foo: 'bar', attribution:  "Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."});
+    cMap.mbstyle = L.tileLayer(mbUrl, {id: 'statecodemog.map-i4mhpeb3', attribution: mbAttr});
       
-    cMap.mbsat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
-	    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
-    });
+    cMap.mbsat = L.tileLayer(mbUrl, {id: 'statecodemog.map-392qgzze', attribution: mbAttr});
 
     cMap.stopafterheader = 0; //?
     cMap.createnewtable = 0; //cMap.createnewtable is the flag to redraw the data table.  Set to 0 means redraw, set to 1 means don't redraw
