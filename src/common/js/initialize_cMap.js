@@ -10,13 +10,11 @@ module.exports = function() {
     cMap.params = require("./parse_query_string.js")();
 
 
-    // mbstyle is a mapbox 'style' (that I created as part of the CO Demog Office Mapbox account).
-    cMap.mbstyle = L.mapbox.tileLayer('statecodemog.aa380654', {
-        'zIndex': 1
+    cMap.mbstyle = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {foo: 'bar', attribution:  "Map tiles by Carto, under CC BY 3.0. Data by OpenStreetMap, under ODbL."});
+      
+    cMap.mbsat = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+	    attribution: 'Tiles &copy; Esri &mdash; Source: Esri, i-cubed, USDA, USGS, AEX, GeoEye, Getmapping, Aerogrid, IGN, IGP, UPR-EGP, and the GIS User Community'
     });
-    //mbsat is a mapbox 'project' (that I created as part of the CO Demog Office Mapbox account).
-    cMap.mbsat = L.mapbox.tileLayer('statecodemog.km7i3g01');
-
 
     cMap.stopafterheader = 0; //?
     cMap.createnewtable = 0; //cMap.createnewtable is the flag to redraw the data table.  Set to 0 means redraw, set to 1 means don't redraw
