@@ -11,7 +11,7 @@ module.exports = function(cMap) {
     // });
     
     var munibounds = new L.geoJson();
-    
+    var county = new L.geoJson();
     
     $.ajax({
         dataType: "json",
@@ -24,7 +24,16 @@ module.exports = function(cMap) {
         }
         }).error(function() {});
         
-    
+    $.ajax({
+        dataType: "json",
+        url: "../assets/geojson/counties.geojson",
+        success: function(data) {
+            $(data.features).each(function(key, data) {
+                county.addData(data);
+            });
+            county.setStyle({color: '#555555', opacity: 1.0, fillColor: '#ffffff', fillOpacity: 0.1});
+        }
+        }).error(function() {});
     
     //create map sandwich
     var topPane = cMap.map._createPane('leaflet-top-pane', cMap.map.getPanes().mapPane);
@@ -39,7 +48,8 @@ module.exports = function(cMap) {
 
     //in the future ill figure out how to toggle labels on and off (and still have it appear on top)
     var groupedOverlays = {
-        "Municipal Boundaries": munibounds
+        "Municipal Boundaries": munibounds,
+        "Counties": county
     };
 
     //add layer control
