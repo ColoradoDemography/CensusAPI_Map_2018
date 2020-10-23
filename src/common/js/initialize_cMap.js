@@ -7,7 +7,7 @@ module.exports = function() {
     var county = new L.geoJson();
     $.ajax({
         dataType: "json",
-        url: "../assets/geojson/counties.geojson",
+        url: "https://storage.googleapis.com/co-publicdata/counties.geojson",
         success: function(data) {
             $(data.features).each(function(key, data) {
                 county.addData(data);
