@@ -4,6 +4,18 @@ module.exports = function() {
     //access token for using mapbox services.  dont copy mine, use your own!
     L.mapbox.accessToken = 'pk.eyJ1Ijoic3RhdGVjb2RlbW9nIiwiYSI6Ikp0Sk1tSmsifQ.hl44-VjKTJNEP5pgDFcFPg';
 
+    var county = new L.geoJson();
+    $.ajax({
+        dataType: "json",
+        url: "../assets/geojson/counties.geojson",
+        success: function(data) {
+            $(data.features).each(function(key, data) {
+                county.addData(data);
+            });
+            county.setStyle({color: '#555555', opacity: 1.0, fillColor: '#ffffff', fillOpacity: 0.1});
+        }
+        }).error(function() {});
+    
     var cMap = {};
     var mbAttr = 'Map data &copy; <a href="https://openstreetmap.org">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, ';
     var mbUrl = 'https://{s}.tiles.mapbox.com/v3/{id}/{z}/{x}/{y}.png';
@@ -119,7 +131,7 @@ module.exports = function() {
         if (cMap.params.bm === 'sat') {
             initialbasemap = cMap.mbsat;
         }
-        return [initialbasemap];
+        return [initialbasemap, county];
     }
 
     //initialize map with lat/lng from address bar string, or default at 39,-104.8
