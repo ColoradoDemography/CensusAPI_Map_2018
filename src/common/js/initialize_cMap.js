@@ -24,9 +24,13 @@ module.exports = function() {
     cMap.params = require("./parse_query_string.js")();
 
 
-    cMap.mbstyle = L.tileLayer(mbUrl, {id: 'statecodemog.map-i4mhpeb3', attribution: mbAttr});
+    cMap.mbstyle = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+        attribution: 'Tiles &copy; Esri &mdash; Source: Esri, DeLorme, NAVTEQ, USGS, Intermap, iPC, NRCAN, Esri Japan, METI, Esri China (Hong Kong), Esri (Thailand), TomTom, 2012'
+    });
       
-    cMap.mbsat = L.tileLayer(mbUrl, {id: 'statecodemog.map-392qgzze', attribution: mbAttr});
+    cMap.mbsat = L.tileLayer('https://api.mapbox.com/styles/v1/statecodemog/ciq0yl9wf000ebpndverm5ler/tiles/256/{z}/{x}/{y}?access_token=pk.eyJ1Ijoic3RhdGVjb2RlbW9nIiwiYSI6Ikp0Sk1tSmsifQ.hl44-VjKTJNEP5pgDFcFPg', {
+        attribution: '© <a href="https://www.mapbox.com/about/maps/">Mapbox</a> © <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> <strong><a href="https://www.mapbox.com/map-feedback/" target="_blank">Improve this map</a></strong>'
+    });
 
     cMap.stopafterheader = 0; //?
     cMap.createnewtable = 0; //cMap.createnewtable is the flag to redraw the data table.  Set to 0 means redraw, set to 1 means don't redraw
